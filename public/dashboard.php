@@ -1,7 +1,21 @@
+<!-- 
+// session_start();
+// if (!isset($_SESSION['usuario'])) {
+//     header("Location: login.php");
+//     exit();
+// }
+// include("../includes/header.php");
+
+// // Datos simulados
+// $totalUsuarios = 1;
+// $totalItems = 5;
+// $totalPrestamos = 2; -->
+
 <?php
 session_start();
 if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php");
+    // no está logueado: redirigir a login
+    header('Location: ../../login/auth/login.php');
     exit();
 }
 include("../includes/header.php");
@@ -10,6 +24,7 @@ include("../includes/header.php");
 $totalUsuarios = 1;
 $totalItems = 5;
 $totalPrestamos = 2;
+// resto del dashboard...
 ?>
 <h2>Bienvenido, <?php echo $_SESSION['usuario']; ?> 👋</h2>
 

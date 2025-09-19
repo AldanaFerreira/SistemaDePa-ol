@@ -1,6 +1,12 @@
 <?php
+require_once ("Prestamo.php");
+require_once ("Usuario.php");
+require_once ("Herramienta.php");
+require_once ("Estado.php");
+
+
 class Prestamo {
-    private int $idPrestamo;
+    private Prestamo $idPrestamo;
     private dateTime $fechaDevolucion;
     private Usuario $usuario;
     private Herramienta $herramienta;

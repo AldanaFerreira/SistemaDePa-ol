@@ -1,8 +1,11 @@
 <?php
+require_once ("Estado.php");
+require_once ("Categoria.php");
+
 class Herramienta {
     private int $idHerramienta;
-    private int $idEstado;
-    private int $idCategoria;
+    private Estado $idEstado;
+    private Categoria $idCategoria;
     private string $nombre;
     private string $descripcion;
     private int $cantidadDisponible;

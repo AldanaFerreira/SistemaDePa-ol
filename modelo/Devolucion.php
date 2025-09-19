@@ -1,4 +1,6 @@
 <?php
+require_once ("Prestamo.php");
+
 class Devolucion {
     private int $idDevolucion;
     private Prestamo $idPrestamo;
