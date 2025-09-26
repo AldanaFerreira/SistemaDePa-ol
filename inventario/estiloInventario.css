@@ -1,0 +1,64 @@
+body { background: #f4f6f8; font-family: Arial, sans-serif; }
+.container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 32px; }
+h2 { color: #1976d2; text-align: center; margin-bottom: 24px; }
+table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+th, td { padding: 12px; border-bottom: 1px solid #e0e0e0; text-align: center; }
+th { background: #e3f2fd; color: #1976d2; }
+tr:last-child td { border-bottom: none; }
+a.btn { background: #1976d2; color: #fff; padding: 6px 14px; border-radius: 5px; text-decoration: none; margin: 0 2px; transition: background 0.2s; }
+a.btn:hover { background: #1565c0; }
+.add-btn { display: inline-block; margin-bottom: 12px; background: #43a047; }
+.add-btn:hover { background: #388e3c; }
+.back-btn {
+	display: block;
+	margin-top: 18px;
+	background: #757575;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: 500;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+	transition: background 0.2s, box-shadow 0.2s;
+}
+.back-btn:hover {
+	background: #424242;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* Estilos para formulario de edición */
+.form-group {
+	margin-bottom: 18px;
+}
+label {
+	display: block;
+	margin-bottom: 6px;
+	color: #555;
+	font-weight: 500;
+}
+input[type="text"], input[type="number"] {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+	background: #f8f9fa;
+	margin-bottom: 4px;
+}
+button[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background: #1976d2;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background 0.2s;
+	margin-top: 10px;
+}
+button[type="submit"]:hover {
+	background: #1565c0;
+}

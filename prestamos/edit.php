@@ -17,18 +17,7 @@ $fecha = date('Y-m-d');
 <html>
 <head>
     <title>Editar Préstamo</title>
-    <style>
-        body { background: #f4f6f8; font-family: Arial, sans-serif; }
-        .container { max-width: 400px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 32px; }
-        h2 { color: #1976d2; text-align: center; margin-bottom: 24px; }
-        .form-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 6px; color: #555; }
-        input[type="text"], input[type="date"] { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
-        button { width: 100%; padding: 10px; background: #1976d2; color: #fff; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background 0.2s; }
-        button:hover { background: #1565c0; }
-        .back-btn { display: block; margin-top: 18px; background: #757575; color: #fff; text-align: center; padding: 8px 0; border-radius: 5px; text-decoration: none; }
-        .back-btn:hover { background: #424242; }
-    </style>
+   <link rel="stylesheet" type="text/css" href="estilo.css">  
 </head>
 <body>
 <div class="container">
@@ -46,9 +35,12 @@ $fecha = date('Y-m-d');
             <label for="fecha">Fecha</label>
             <input type="date" name="fecha" id="fecha" value="<?= $fecha ?>" required>
         </div>
-        <button type="submit">Guardar Cambios</button>
+    <div class="acciones-btns">
+            <button type="submit" class="btn">Guardar Cambios</button>
+            <a href="delete.php?id=<?= $id ?>" class="btn" onclick="return confirm('¿Seguro que deseas eliminar este préstamo?');">Eliminar</a>
+    <a href="../public/dashboard.php" class="btn back-btn">Volver al Dashboard</a>
+        </div>
     </form>
-    <a href="list.php" class="back-btn">Volver</a>
 </div>
 </body>
 </html>
