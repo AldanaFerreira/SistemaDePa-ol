@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Sistema de Pañol</title>
     <style>
         body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
-    header { background:#1976d2; color:#fff; padding:15px; }
+    header { background:#001f3f; color:#fff; padding:15px; }
         header h1 { margin:0; font-size:22px; }
         nav { margin-top:10px; }
     nav a { color:#fff; margin-right:15px; text-decoration:none; }
