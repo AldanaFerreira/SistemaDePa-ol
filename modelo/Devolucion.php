@@ -4,13 +4,13 @@ require_once ("Prestamo.php");
 class Devolucion {
     private int $idDevolucion;
     private Prestamo $idPrestamo;
-    private dateTime $fecha;
+    private DateTime $fecha;
     private string $observaciones;
     private bool $devuelto;
     private bool $retrasado;
 
 
-    public function __construct(int $idDevolucion, Prestamo $idPrestamo, dateTime $fecha, string $observaciones, bool $devuelto, bool $retrasado) {
+    public function __construct(int $idDevolucion, Prestamo $idPrestamo, DateTime $fecha, string $observaciones, bool $devuelto, bool $retrasado) {
         $this->idDevolucion = $idDevolucion;
         $this->idPrestamo = $idPrestamo;
         $this->fecha = $fecha;

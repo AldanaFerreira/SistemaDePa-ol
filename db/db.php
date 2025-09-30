@@ -1,12 +1,17 @@
 <?php
+
 $host = "localhost";
-$user = "root";      // tu usuario de MySQL
-$pass = "Abril2006";          // tu contraseña de MySQL
-$db   = "panol_db";  // nombre de tu base de datos
+$usuario = "root";
+$contraseña = "aldu123";
+$basedatos = "sistemapanol";
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $usuario, $contraseña, $basedatos);///conn ess para hacer consultas
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+if($conn->connect_error) {
+    die("Error de conexión: " .
+    $conn->connect_error);
 }
+
+
+
 ?>

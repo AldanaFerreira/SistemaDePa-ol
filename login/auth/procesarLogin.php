@@ -1,3 +1,8 @@
+
+<link rel="stylesheet" href="../css/estilos.css">
+
+
+
 <?php
 session_start();
 
@@ -17,3 +22,4 @@ if ($usuario === $usuario_valido && $clave === $clave_valida) {
             <a href='login.html' style='color:blue; text-decoration:underline;'>Volver al login</a>
           </div>";
 }
+

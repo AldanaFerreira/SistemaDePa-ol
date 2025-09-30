@@ -36,3 +36,8 @@
         .add-btn:hover { background: #388e3c; }
         .back-btn { margin-top: 18px; background: #757575; }
         .back-btn:hover { background: #424242; }
+
+        buttons {
+                margin: 5px;
+                background-color: #cb2020;
+        }
