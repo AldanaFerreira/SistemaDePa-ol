@@ -1,0 +1,46 @@
+/* Iconos modernos y botones para la barra lateral */
+.sidebar a.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 68%;
+  padding: 4px 0 2px 0;
+  background: linear-gradient(135deg, #1976d2 60%, #2196f3 100%);
+  color: #fff;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+  font-weight: 600;
+  font-size: 11px;
+  margin-bottom: 7px;
+  border: 1px solid #1565c0;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s, border 0.2s;
+}
+.sidebar a.btn:hover {
+  background: linear-gradient(135deg, #2196f3 60%, #1976d2 100%);
+  color: #e3eafd;
+  box-shadow: 0 4px 12px rgba(26,35,126,0.16), 0 1px 4px rgba(33,150,243,0.10);
+  border: 1.5px solid #1976d2;
+  transform: translateY(-1px) scale(1.03);
+}
+.sidebar .sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  color: #1976d2;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(26,35,126,0.10);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.sidebar .sidebar-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.5px;
+}

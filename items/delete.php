@@ -12,12 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Eliminar Ítem</title></head>
+<head>
+    <title>Eliminar Ítem</title>
+    <link rel="stylesheet" type="text/css" href="estiloItem.css">
+</head>
 <body>
-<h2>¿Seguro que deseas eliminar el ítem #<?= $id ?>?</h2>
-<form method="post">
-    <button type="submit">Eliminar</button>
-    <a href="list.php">Cancelar</a>
-</form>
+<div class="container">
+    <h2>¿Seguro que deseas eliminar el ítem #<?= $id ?>?</h2>
+    <form method="post">
+        <button type="submit" class="btn" style="background:#d32f2f;">Eliminar</button>
+        <a href="list.php" class="btn back-btn">Cancelar</a>
+    </form>
+</div>
 </body>
 </html>
