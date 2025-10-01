@@ -29,12 +29,12 @@ $totalPrestamos = 2;
 <div class="sidebar">
     <h2 style="margin-bottom: 10px;">Sistema Pañol</h2>
     <h3 style="margin-bottom: 32px;">Menú</h3>
-        <a href="../items/list.php" class="btn">
+        <a href="../items/add.php" class="btn">
             <span class="sidebar-icon">
-                <!-- Modern icon: inventory_2 (Material Icons) -->
-                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6V4H4v2H2v2h20V6h-2zm0 2H4v12h16V8zm-2 10H6V10h12v8z"/></svg>
+                <!-- Modern icon: build (Material Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19.3l-6.4-6.4c.6-1.1.9-2.3.7-3.6-.2-1.3-.8-2.5-1.7-3.4-1.7-1.7-4.3-2-6.2-.7l2.1 2.1-2.8 2.8-2.1-2.1c-1.3 1.9-1 4.5.7 6.2.9.9 2.1 1.5 3.4 1.7 1.3.2 2.5-.1 3.6-.7l6.4 6.4c.4.4 1 .4 1.4 0l1.4-1.4c.4-.4.4-1 0-1.4z"/></svg>
             </span>
-            <span class="sidebar-text">Ítems</span>
+            <span class="sidebar-text">Herramientas</span>
         </a>
         <a href="../prestamos/list.php" class="btn">
             <span class="sidebar-icon">
@@ -43,13 +43,31 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Préstamos</span>
         </a>
-        <a href="../inventario/list.php" class="btn">
-            <span class="sidebar-icon">
-                <!-- Modern icon: category (Material Icons) -->
-                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11zM2 20h20v-2H2zm2-4h16v-2H4z"/></svg>
-            </span>
-            <span class="sidebar-text">Inventario</span>
-        </a>
+        <div class="sidebar-dropdown">
+            <button class="btn sidebar-dropdown-toggle" type="button" onclick="event.stopPropagation();document.getElementById('inventario-menu').classList.toggle('show')">
+<script>
+// Cierra el menú desplegable si se hace clic fuera
+document.addEventListener('click', function(e) {
+    var menu = document.getElementById('inventario-menu');
+    if(menu && menu.classList.contains('show')) {
+        if (!menu.contains(e.target) && !e.target.classList.contains('sidebar-dropdown-toggle')) {
+            menu.classList.remove('show');
+        }
+    }
+});
+</script>
+                <span class="sidebar-icon">
+                    <!-- Modern icon: category (Material Icons) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11zM2 20h20v-2H2zm2-4h16v-2H4z"/></svg>
+                </span>
+                <span class="sidebar-text">Inventario ▼</span>
+            </button>
+            <div id="inventario-menu" class="sidebar-dropdown-menu">
+                <a href="../inventario/list.php" class="btn">Inventario Básico</a>
+                <a href="../inventario/list_mmo.php" class="btn">Inventario MMO</a>
+                <a href="../inventario/list_emc.php" class="btn">Inventario EMC</a>
+            </div>
+        </div>
         <!-- Sección Configuración -->
         <a href="../public/configuracion.php" class="btn">
             <span class="sidebar-icon">

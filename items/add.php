@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 VALUES ('$idEstado', '$nombre', '$descripcion', '$cantidadDisponible', '$idcategoria')";
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: list.php");
+            header("Location: ../inventario/list.php");
             exit;
         } else {
             echo "Error al guardar la herramienta: " . $conn->error;
@@ -77,5 +77,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <button type="submit">Guardar</button>
     </form>
-    <a href="list.php" class="back-btn">Volver</a>
+    <a href="../public/dashboard.php" class="back-btn">Volver al Dashboard</a>
 </div>

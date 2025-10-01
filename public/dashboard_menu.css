@@ -1,3 +1,59 @@
+/* Estilos para menú desplegable de inventario */
+.sidebar-dropdown-toggle {
+  color: #e3eafd;
+  text-decoration: none;
+  margin: 8px 0;
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  width: 90%;
+  box-shadow: 0 1px 4px rgba(26,35,126,0.04);
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 44px;
+  border: none;
+  background: #1a237e;
+  cursor: pointer;
+  height: 44px;
+}
+.sidebar-dropdown-toggle:hover {
+  background: #3949ab;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+}
+.sidebar-dropdown-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 44px;
+  width: 90%;
+  background: #1976d2;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  z-index: 10;
+}
+.sidebar-dropdown-menu.show {
+  display: flex !important;
+}
+.sidebar-dropdown-menu a {
+  margin: 0;
+  padding: 10px 28px;
+  border-radius: 0;
+  border-bottom: 1px solid #1565c0;
+}
+.sidebar-dropdown-menu a:last-child {
+  border-bottom: none;
+  border-radius: 0 0 8px 8px;
+}
 
 .card.inventory table {
   font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
@@ -44,7 +100,7 @@
   width: 190px;
   height: 100vh;
   background: #1a237e;
-  color: #e3eafd;
+  color: #90caf9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +156,7 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  color: #90caf9;
+  color:#90caf9;
   font-size: 22px;
   background: rgba(255,255,255,0.10);
   border-radius: 50%;
