@@ -1,3 +1,11 @@
+
+/* Botón de Inventario más grande */
+.sidebar a.btn.sidebar-dropdown-toggle {
+  width: 85%;
+  padding: 12px 0 10px 0;
+  font-size: 16px;
+  border-radius: 14px;
+}
 /* Iconos modernos y botones para la barra lateral */
 .sidebar a.btn {
   display: flex;

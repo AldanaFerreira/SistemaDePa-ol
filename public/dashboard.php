@@ -43,33 +43,23 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Préstamos</span>
         </a>
-        <div class="sidebar-dropdown">
-            <button class="btn sidebar-dropdown-toggle" type="button" onclick="event.stopPropagation();document.getElementById('inventario-menu').classList.toggle('show')">
-<script>
-// Cierra el menú desplegable si se hace clic fuera
-document.addEventListener('click', function(e) {
-    var menu = document.getElementById('inventario-menu');
-    if(menu && menu.classList.contains('show')) {
-        if (!menu.contains(e.target) && !e.target.classList.contains('sidebar-dropdown-toggle')) {
-            menu.classList.remove('show');
-        }
-    }
-});
-</script>
-                <span class="sidebar-icon">
-                    <!-- Modern icon: category (Material Icons) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11zM2 20h20v-2H2zm2-4h16v-2H4z"/></svg>
-                </span>
-                <span class="sidebar-text">Inventario ▼</span>
-            </button>
-            <div id="inventario-menu" class="sidebar-dropdown-menu">
-                <a href="../inventario/list.php" class="btn">Inventario Básico</a>
-                <a href="../inventario/list_mmo.php" class="btn">Inventario MMO</a>
-                <a href="../inventario/list_emc.php" class="btn">Inventario EMC</a>
-            </div>
-        </div>
+            <!-- Sección Inventario -->
+
+                <div class="sidebar-dropdown" >
+                    <button class="btn" type="button" onclick="event.stopPropagation();document.getElementById('inventario-menu').classList.toggle('show')" >
+                        <span class="sidebar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11zM2 20h20v-2H2zm2-4h16v-2H4z"/></svg>
+                        </span>
+                        <span class="sidebar-text">Inventario ▼</span>
+                    </button>
+                    <div id="inventario-menu" class="sidebar-dropdown-menu" style="position:static;width:90%;margin-left:auto;margin-right:auto;">
+                        <a href="../inventario/list.php" class="btn" style="width:100%;margin:6px 0;font-size:16px;min-height:44px;border-radius:12px;">Inventario Básico</a>
+                        <a href="../inventario/list_mmo.php" class="btn" style="width:100%;margin:6px 0;font-size:16px;min-height:44px;border-radius:12px;">Inventario MMO</a>
+                        <a href="../inventario/list_emc.php" class="btn" style="width:100%;margin:6px 0;font-size:16px;min-height:44px;border-radius:12px;">Inventario EMC</a>
+                    </div>
+                </div>
         <!-- Sección Configuración -->
-        <a href="../public/configuracion.php" class="btn">
+    <a href="../public/configuracion.php" class="btn" style="width:68%;padding:4px 0 2px 0;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;">
             <span class="sidebar-icon">
                 <!-- Modern icon: settings (Material Icons) -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 00.12-.64l-1.92-3.32a.5.5 0 00-.61-.22l-2.39.96a7.007 7.007 0 00-1.62-.94l-.36-2.53A.5.5 0 0014 2h-4a.5.5 0 00-.5.42l-.36 2.53c-.59.22-1.14.52-1.62.94l-2.39-.96a.5.5 0 00-.61.22l-1.92 3.32a.5.5 0 00.12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.5.5 0 00-.12.64l1.92 3.32c.14.24.44.32.68.22l2.39-.96c.48.42 1.03.72 1.62.94l.36 2.53c.05.28.27.42.5.42h4c.23 0 .45-.14.5-.42l.36-2.53c.59-.22 1.14-.52 1.62-.94l2.39.96c.24.1.54.02.68-.22l1.92-3.32a.5.5 0 00-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/></svg>
