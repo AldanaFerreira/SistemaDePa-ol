@@ -43,6 +43,13 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Préstamos</span>
         </a>
+        <a href="../reportes/list.php" class="btn">
+            <span class="sidebar-icon">
+                <!-- Modern icon: bar_chart (Material Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2V19h2V9.2zm6 2.6V19h2v-7.2zm6-5.2V19h2V6.6z"/></svg>
+            </span>
+            <span class="sidebar-text">Reportes</span>
+        </a>
             <!-- Sección Inventario -->
 
                 <a href="../inventario/list.php" class="btn">
@@ -85,26 +92,31 @@ $totalPrestamos = 2;
         </div>
 
         <!-- Inventario en el dashboard -->
+        <?php
+        require_once '../db/db.php';
+        $sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible, c.nombre AS categoria, e.nombre AS estado
+                FROM herramientas h
+                JOIN categorias c ON h.idcategoria = c.idcategoria
+                JOIN estados e ON h.idEstado = e.idEstado";
+        $result = $conn->query($sql);
+        ?>
         <div class="card inventory" style="margin-top:32px;">
             <h3>Inventario</h3>
             <table style="width:100%; border-collapse:collapse; margin-top:18px;">
                 <tr><th>ID</th><th>Herramienta</th><th>Categoría</th><th>Stock</th><th>Estado</th></tr>
-                <?php
-                // Datos simulados de inventario
-                $inventario = [
-                    ["id" => 1, "herramienta" => "Martillo", "categoria" => "Manuales", "stock" => 10, "estado" => "Disponible"],
-                    ["id" => 2, "herramienta" => "Pinza", "categoria" => "Manuales", "stock" => 5, "estado" => "En uso"],
-                    ["id" => 3, "herramienta" => "Taladro", "categoria" => "Eléctricas", "stock" => 2, "estado" => "Mantenimiento"],
-                ];
-                foreach($inventario as $item): ?>
-                    <tr>
-                        <td><?= $item['id'] ?></td>
-                        <td><?= $item['herramienta'] ?></td>
-                        <td><?= $item['categoria'] ?></td>
-                        <td><?= $item['stock'] ?></td>
-                        <td><?= $item['estado'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php if ($result && $result->num_rows > 0): ?>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?= $row['idHerramienta'] ?></td>
+                            <td><?= $row['nombre'] ?></td>
+                            <td><?= $row['cantidadDisponible'] ?></td>
+                            <td><?= $row['categoria'] ?></td>
+                            <td><?= $row['estado'] ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr><td colspan="5">No hay ítems registrados</td></tr>
+                <?php endif; ?>
             </table>
             <a href="../inventario/list.php" class="btn" style="margin-top:12px;">Ver inventario completo</a>
         </div>

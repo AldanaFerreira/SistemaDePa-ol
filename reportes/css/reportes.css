@@ -1,0 +1,161 @@
+/* Estética para el reporte generado */
+.reporte-estetico {
+    max-width: 700px;
+    margin: 32px auto;
+    background: #f8fafc;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(26,35,126,0.10);
+    padding: 32px 28px;
+    text-align: center;
+    border: 2px solid #3949ab;
+}
+.reporte-titulo {
+    color: #1a237e;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+.reporte-info {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: #3949ab;
+}
+.reporte-subtitulo {
+    color: #3949ab;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+/* Estilos para la tabla de reporte */
+.tabla-reporte {
+    width: 100%;
+    margin-top: 24px;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 15px;
+    box-shadow: 0 2px 8px rgba(26,35,126,0.07);
+}
+.tabla-reporte th, .tabla-reporte td {
+    border: 1px solid #3949ab;
+    padding: 8px 12px;
+    text-align: left;
+}
+.tabla-reporte th {
+    background: #3949ab;
+    color: #fff;
+    font-weight: 600;
+}
+.tabla-reporte tr:nth-child(even) {
+    background: #f5f7fa;
+}
+h2, h3 {
+    color: #1a237e;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+@media print {
+    #formReporte, #accionesReporte, #volverDashboard {
+        display: none !important;
+    }
+}
+/* Estilos para la página de reportes */
+.reportes-form {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(26,35,126,0.10);
+    padding: 32px 24px;
+}
+/* Mejor alineación y aspecto parejo para el form */
+.reportes-form form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.reportes-form label {
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 2px;
+    display: block;
+}
+.reportes-form select,
+.reportes-form input[type="date"] {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #3949ab;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+/* Ocultar botones al imprimir/exportar PDF */
+.reportes-form .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+@media print {
+    #accionesReporte, #volverDashboard {
+        display: none !important;
+    }
+}
+/* Botones con el mismo recuadro y aspecto */
+.btn {
+    background: #3949ab;
+    color: #fff;
+    border: 2px solid #3949ab;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    box-shadow: 0 2px 6px rgba(26,35,126,0.08);
+    outline: none;
+    display: inline-block;
+}
+.btn:hover {
+    background: #fff;
+    color: #3949ab;
+    border: 2px solid #1a237e;
+}
+.volver-dashboard {
+    background: #90caf9;
+    color: #1a237e;
+    border: 2px solid #90caf9;
+}
+.volver-dashboard:hover {
+    background: #fff;
+    color: #90caf9;
+    border: 2px solid #1a237e;
+}
+        .reportes-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(26,35,126,0.10);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        h2 {
+            color: #1a237e;
+            margin-bottom: 24px;
+        }
+        .btn {
+            display: block;
+            width: 95%;
+            margin: 12px 0;
+            font-size: 16px;
+            padding: 12px 0;
+            border-radius: 8px;
+            background: #3949ab;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1a237e;
+        }

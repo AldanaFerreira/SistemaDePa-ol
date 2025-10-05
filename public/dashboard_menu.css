@@ -60,6 +60,7 @@
   width: 100%;
   border-collapse: collapse;
   text-align: center;
+    transition: transform 0.2s ease;
 
 
 .card.inventory th, .card.inventory td {
@@ -86,6 +87,7 @@
 
 .card.inventory table {
   font-size: 1.08em;
+    
 }
 
 .card.inventory th, .card.inventory td {
