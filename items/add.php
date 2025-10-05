@@ -15,16 +15,15 @@ $estados = $conn->query("SELECT * FROM estados");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Validar que los campos existen
-    if(isset($_POST['nombre'], $_POST['descripcion'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['idEstado'])) {
+    if(isset($_POST['nombre'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['idEstado'])) {
         $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
         $cantidadDisponible = $_POST['cantidadDisponible'];
         $idcategoria = $_POST['idcategoria'];
         $idEstado = $_POST['idEstado'];
 
         // Preparar la consulta para evitar problemas de tipo
-        $sql = "INSERT INTO herramientas (idEstado, nombre, descripcion, cantidadDisponible, idcategoria) 
-                VALUES ('$idEstado', '$nombre', '$descripcion', '$cantidadDisponible', '$idcategoria')";
+        $sql = "INSERT INTO herramientas (idEstado, nombre, cantidadDisponible, idcategoria) 
+                VALUES ('$idEstado', '$nombre', '$cantidadDisponible', '$idcategoria')";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: ../inventario/list.php");
@@ -38,6 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 <link rel="stylesheet" type="text/css" href="estiloItem.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<div class="form-container">
+    <div class="menu-button">
+        <a href="../public/dashboard.php" class="menu-link">
+            <i class="fas fa-bars"></i> Menú
+        </a>
+    </div>
 
 <div class="container">
     <h2>Agregar Herramientas</h2>
@@ -47,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="text" name="nombre" id="nombre" required>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="descripcion">Descripción</label>
             <input type="text" name="descripcion" id="descripcion">
-        </div>
+        </div> -->
 
         <div class="form-group">
             <label for="cantidadDisponible">Cantidad</label>
@@ -77,5 +85,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <button type="submit">Guardar</button>
     </form>
-    <a href="../public/dashboard.php" class="back-btn">Volver al Dashboard</a>
+
 </div>

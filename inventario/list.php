@@ -22,6 +22,14 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html>
 <head>
+
+<div class="form-container">
+    <div class="menu-button">
+        <a href="../public/dashboard.php" class="menu-link">
+            <i class="fas fa-bars"></i> Menú
+        </a>
+    </div>
+
     <title>Herramientas</title>
 <link rel="stylesheet" href="../datatables/css/bootstrap.min.css">
 <link rel="stylesheet" href="../datatables/css/jquery.dataTables.min.css">
@@ -31,6 +39,7 @@ $result = $conn->query($sql);
 	
 
 <link href="../inventario/estiloInventario.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
  
 </head>
 <body>
@@ -57,8 +66,12 @@ $result = $conn->query($sql);
                         <td><?= $row['categoria'] ?></td>
                         <td><?= $row['estado'] ?></td>
                         <td>
-                            <a href="edit.php?id=<?= $row['idHerramienta'] ?>" class="btn">Editar</a>
-                            <a href="delete.php?id=<?= $row['idHerramienta'] ?>" class="btn" onclick="return confirm('¿Seguro que deseas eliminar este ítem?');">Eliminar</a>
+                            <a href="edit.php?id=<?= $row['idHerramienta'] ?>" class="btn">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="delete.php?id=<?= $row['idHerramienta'] ?>" class="btn" onclick="return confirm('¿Seguro que deseas eliminar este ítem?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -67,7 +80,6 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </tbody>
     </table>
-    <a href="../public/dashboard.php" class="btn back-btn">Volver al Incio</a>
 </div>
 
 
@@ -83,22 +95,65 @@ $result = $conn->query($sql);
 
 
 <script>
+// $(document).ready(function() {
+//     $('#herramientas').DataTable({
+//         dom: 'Blfrtip',            // muestra botones arriba
+//         buttons: [
+//             {
+//                 extend: 'collection',
+//                 text: '<i class="fas fa-download"></i> ',
+//                 buttons: [
+//                     { extend: 'copy', text: 'Copiar' },
+//                     { extend: 'excel', text: 'Excel' },
+//                     { extend: 'pdf', text: 'PDF' },
+//                     { extend: 'print', text: ' Imprimir' }
+//                 ]
+//             }
+//         ],
+//         language: {
+//             search: "Buscar:",
+//             lengthMenu: "Mostrar _MENU_ herramientas por página",
+//             zeroRecords: "No se encontraron herramientas",
+//             info: "Mostrando página _PAGE_ de _PAGES_",
+//             infoEmpty: "No hay herramientas disponibles",
+//             infoFiltered: "(filtrado de _MAX_ herramientas totales)",
+//             paginate: {
+//                 first: "Primera",
+//                 last: "Última",
+//                 next: "Siguiente",
+//                 previous: "Anterior"
+//             }
+//         }
+//     });
+// });
+</script>
+<script>
 $(document).ready(function() {
     $('#herramientas').DataTable({
-        dom: 'Blfrtip',            // muestra botones arriba
+        
+        dom: '<"row mb-3"<"col-md-6 d-flex align-items-center"f><"col-md-6 text-end"B>>' +
+             'rt' +
+             '<"row mt-3"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 text-end"p>>',
         buttons: [
-            { extend: 'copy', className: 'btn btn-sm btn-primary' },
-            { extend: 'excel',className: 'btn btn-sm btn-primary' },
-            { extend: 'pdf',  className: 'btn btn-sm btn-primary' },
-            { extend: 'print',className: 'btn btn-sm btn-primary' }
+            {
+                extend: 'collection',
+                text: '<i class="fas fa-download"></i>',
+                className: 'btn btn-primary',
+                buttons: [
+                    { extend: 'copy', text: 'Copiar' },
+                    { extend: 'excel', text: 'Excel' },
+                    { extend: 'pdf', text: 'PDF' },
+                    { extend: 'print', text: 'Imprimir' }
+                ]
+            }
         ],
         language: {
             search: "Buscar:",
-            lengthMenu: "Mostrar _MENU_ ítems por página",
-            zeroRecords: "No se encontraron ítems",
+            lengthMenu: "Mostrar _MENU_ herramientas por página",
+            zeroRecords: "No se encontraron herramientas",
             info: "Mostrando página _PAGE_ de _PAGES_",
-            infoEmpty: "No hay ítems disponibles",
-            infoFiltered: "(filtrado de _MAX_ ítems totales)",
+            infoEmpty: "No hay herramientas disponibles",
+            infoFiltered: "(filtrado de _MAX_ herramientas totales)",
             paginate: {
                 first: "Primera",
                 last: "Última",
@@ -109,6 +164,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 </body>
 </html>
