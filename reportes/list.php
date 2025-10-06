@@ -8,6 +8,9 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: ../login/auth/login.html');
     exit();
 }
+require_once '../modelo/Reporte.php';
+require_once '../modelo/Usuario.php';
+require_once '../modelo/TipoPañol.php';
 require_once '../db/db.php';
 
 ?>
@@ -24,11 +27,25 @@ require_once '../db/db.php';
     <div class="reportes-form">
         <h2>Generar Reporte</h2>
         <form method="GET" action="" id="formReporte">
+            <label for="turno">Turno:</label>
+            <input type="text" name="turno" id="turno" placeholder="Ej: Mañana/Tarde" required>
+
+            <label for="horario">Horario:</label>
+            <input type="text" name="horario" id="horario" placeholder="Ej: 8:00 - 12:00" required>
             <label for="fecha">Fecha del reporte:</label>
             <input type="date" name="fecha" id="fecha">
 
+            <label for="curso">Curso:</label>
+            <input type="text" name="curso" id="curso" placeholder="Ej: 3°A" required>
+
+            <label for="comision">Comisión:</label>
+            <input type="text" name="comision" id="comision" placeholder="Ej: 1" required>
+
+            <label for="profesor">Profesor responsable:</label>
+            <input type="text" name="profesor" id="profesor" placeholder="Nombre y apellido" required>
+
             <label for="descripcion">Descripción:</label>
-            <textarea name="descripcion" id="descripcion" rows="3" ></textarea>
+            <textarea name="descripcion" id="descripcion" rows="3" placeholder="Detalles del reporte"></textarea>
 
             <!-- Botones corregidos -->
             <div class="actions" id="accionesReporte">
@@ -47,12 +64,22 @@ require_once '../db/db.php';
         // Mostrar reporte solo si se presionó el botón 'Ver reporte'
         if (isset($_GET['ver']) && $_GET['ver'] == '1') {
             $fechaReporte = isset($_GET['fecha']) && $_GET['fecha'] ? $_GET['fecha'] : date('Y-m-d');
+            $curso = isset($_GET['curso']) ? htmlspecialchars($_GET['curso']) : '';
+            $comision = isset($_GET['comision']) ? htmlspecialchars($_GET['comision']) : '';
+            $profesor = isset($_GET['profesor']) ? htmlspecialchars($_GET['profesor']) : '';
+            $turno = isset($_GET['turno']) ? htmlspecialchars($_GET['turno']) : '';
+            $horario = isset($_GET['horario']) ? htmlspecialchars($_GET['horario']) : '';
             $descripcion = isset($_GET['descripcion']) ? htmlspecialchars($_GET['descripcion']) : '';
             echo '<div id="reporteDatos" class="reporte-estetico">';
             echo '<h2 class="reporte-titulo">Reporte generado</h2>';
             echo '<table id="reporteDatosTable" class="display" style="width:100%;margin-top:20px;">';
             echo '<thead><tr><th>Campo</th><th>Valor</th></tr></thead><tbody>';
             echo '<tr><td>Fecha</td><td>' . date('d/m/Y', strtotime($fechaReporte)) . '</td></tr>';
+            echo '<tr><td>Curso</td><td>' . $curso . '</td></tr>';
+            echo '<tr><td>Comisión</td><td>' . $comision . '</td></tr>';
+            echo '<tr><td>Profesor responsable</td><td>' . $profesor . '</td></tr>';
+            echo '<tr><td>Turno</td><td>' . $turno . '</td></tr>';
+            echo '<tr><td>Horario</td><td>' . $horario . '</td></tr>';
             echo '<tr><td>Descripción</td><td>' . nl2br($descripcion) . '</td></tr>';
             echo '</tbody></table>';
             echo '</div>';

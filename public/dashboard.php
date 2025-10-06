@@ -15,7 +15,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario'])) {
-    header('Location: ../../login/public/login.php');
+    header('Location: ../login/auth/login.html');
     exit();
 }
 // Datos simulados

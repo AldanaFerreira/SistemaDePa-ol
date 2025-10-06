@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $usuario = "root";
-$contraseña = "Ramiro1919";
+$contraseña = "abril2006";
 $basedatos = "sistemapanol";
 
 $conn = new mysqli($host, $usuario, $contraseña, $basedatos);///conn ess para hacer consultas

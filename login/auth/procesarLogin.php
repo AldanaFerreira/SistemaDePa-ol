@@ -1,26 +1,31 @@
+<link rel="stylesheet" href="../css/estilos.css">
+
+
+
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 $usuario = $_POST['usuario'] ?? '';
 $clave   = $_POST['clave'] ?? '';
 
-// 🔸 Usuarios simulados
-$usuarios = [
-    'admin' => ['clave' => '1234', 'rol' => 'pañolero'],
-    'jefe'  => ['clave' => '5678', 'rol' => 'jefe_area']
-];
 
-if (isset($usuarios[$usuario]) && $usuarios[$usuario]['clave'] === $clave) {
+$usuario_valido = "admin";
+$clave_valida   = "1234";
+
+// Jefe de usuario
+if ($usuario === "jefe" && $clave === "5678") {
     $_SESSION['usuario'] = $usuario;
-    $_SESSION['rol'] = $usuarios[$usuario]['rol'];
-
-    //  Redirige según el rol
-if ($_SESSION['rol'] === 'jefe_area') {
     header("Location: ../public/dashboard-jefe.php");
-} else {
-    header("Location: ../public/dashboard.php");
+    exit();
 }
 
+// Admin
+if ($usuario === $usuario_valido && $clave === $clave_valida) {
+    $_SESSION['usuario'] = $usuario;
+    header("Location: ../../public/dashboard.php");
     exit();
 } else {
     echo "<div style='font-family:sans-serif; text-align:center; margin-top:2rem;'>
@@ -28,4 +33,4 @@ if ($_SESSION['rol'] === 'jefe_area') {
             <a href='login.html' style='color:blue; text-decoration:underline;'>Volver al login</a>
           </div>";
 }
-?>
+
