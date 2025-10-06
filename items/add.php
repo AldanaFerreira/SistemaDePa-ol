@@ -11,19 +11,20 @@ require_once '../db/db.php';
 
 // Traer categorías y estados para mostrar en los select
 $categorias = $conn->query("SELECT * FROM categorias");
-$estados = $conn->query("SELECT * FROM estados");
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Validar que los campos existen
-    if(isset($_POST['nombre'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['idEstado'])) {
+    if(isset($_POST['nombre'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['ubicacion'])) {
         $nombre = $_POST['nombre'];
         $cantidadDisponible = $_POST['cantidadDisponible'];
         $idcategoria = $_POST['idcategoria'];
-        $idEstado = $_POST['idEstado'];
+        $ubicacion = $_POST['ubicacion'];
+
 
         // Preparar la consulta para evitar problemas de tipo
-        $sql = "INSERT INTO herramientas (idEstado, nombre, cantidadDisponible, idcategoria) 
-                VALUES ('$idEstado', '$nombre', '$cantidadDisponible', '$idcategoria')";
+        $sql = "INSERT INTO herramientas (nombre, cantidadDisponible, idcategoria, ubicacion) 
+                VALUES ('$nombre', '$cantidadDisponible', '$idcategoria', '$ubicacion')";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: ../inventario/list.php");
@@ -55,17 +56,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="text" name="nombre" id="nombre" required>
         </div>
 
-        <!-- <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" id="descripcion">
-        </div> -->
-
         <div class="form-group">
             <label for="cantidadDisponible">Cantidad</label>
             <input type="number" name="cantidadDisponible" id="cantidadDisponible" min="1" required>
         </div>
 
+        
         <div class="form-group">
+            <label for="ubicacion">Ubicación</label>
+            <input type="text" name="ubicacion" id="ubicacion" required>
+        </div>
+
+        <div class="form-group  categoria-center">
             <label for="idcategoria">Categoría</label>
             <select name="idcategoria" id="idcategoria" required>
                 <?php while ($row = $categorias->fetch_assoc()) { ?>
@@ -74,14 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="idEstado">Estado</label>
-            <select name="idEstado" id="idEstado" required>
-                <?php while ($row = $estados->fetch_assoc()) { ?>
-                    <option value="<?= $row['idEstado'] ?>"><?= $row['nombre'] ?></option>
-                <?php } ?>
-            </select>
-        </div>
 
         <button type="submit">Guardar</button>
     </form>

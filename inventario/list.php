@@ -10,12 +10,14 @@ if (!isset($_SESSION['usuario'])) {
 
 require_once '../db/db.php';
 
-// Traer herramientas con categoría y estado
-$sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible, 
-               c.nombre AS categoria, e.nombre AS estado
+// Traer herramientas con categoría 
+$sql = "SELECT h.idHerramienta, 
+               h.nombre, 
+               h.cantidadDisponible, 
+               h.ubicacion,
+               c.nombre AS categoria
         FROM herramientas h
-        JOIN categorias c ON h.idcategoria = c.idcategoria
-        JOIN estados e ON h.idEstado = e.idEstado";
+        JOIN categorias c ON h.idcategoria = c.idcategoria";
 
 $result = $conn->query($sql);
 ?>
@@ -44,7 +46,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 <div class="container">
-    <h2>Lista de Herramientas</h2>
+    <h2>Inventario Ciclo Básico</h2>
     <table id="herramientas" class="display">
         <thead>
             <tr>
@@ -52,7 +54,7 @@ $result = $conn->query($sql);
                 <th>Nombre</th>
                 <th>Cantidad</th>
                 <th>Categoría</th>
-                <th>Estado</th>
+                <th>Ubicación</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -64,14 +66,35 @@ $result = $conn->query($sql);
                         <td><?= $row['nombre'] ?></td>
                         <td><?= $row['cantidadDisponible'] ?></td>
                         <td><?= $row['categoria'] ?></td>
-                        <td><?= $row['estado'] ?></td>
-                        <td>
-                            <a href="edit.php?id=<?= $row['idHerramienta'] ?>" class="btn">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="delete.php?id=<?= $row['idHerramienta'] ?>" class="btn" onclick="return confirm('¿Seguro que deseas eliminar este ítem?');">
+                        <td><?= $row['ubicacion'] ?></td>
+                        <td class="text-center">
+
+                        <!-- Botón Editar -->
+                        <a href="edit.php?id=<?= $row['idHerramienta'] ?>" 
+                           class="btn-editar" title="Editar">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+
+                        <!-- Botón Eliminar -->
+                        <form method="post" action="delete.php" style="display:inline;">
+                            <input type="hidden" name="idHerramienta" value="<?= $row['idHerramienta'] ?>">
+                            <button type="submit" name="eliminar" class="btn-eliminar"
+                                    onclick="return confirm('¿Seguro que deseas eliminar esta herramienta?');">
                                 <i class="fas fa-trash"></i>
-                            </a>
+                            </button>
+                        </form>
+
+                        <!-- Botón Mantenimiento -->
+                        <!-- <form method="post" action="mantenimiento.php" style="display:inline;">
+                            <input type="hidden" name="idHerramienta" value="">
+                            <button type="submit" name="mantenimiento" class="btn btn-warning btn-sm"
+                                    onclick="return confirm('¿Enviar esta herramienta a mantenimiento?');">
+                                <i class="fas fa-tools"></i>
+                            </button>
+                        </form> -->
+
+
+
                         </td>
                     </tr>
                 <?php endwhile; ?>

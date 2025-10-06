@@ -122,7 +122,7 @@ table.dataTable td {
 }
 
 /* Botón Editar */
-.btn {
+.btn-editar {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -133,18 +133,29 @@ table.dataTable td {
     text-decoration: none;
     font-weight: bold;
 }
-a.btn:hover {
+a.btn-editar:hover {
     background-color: rgb(4, 101, 4);
     color: white;
     text-decoration: none;
 }
 
-/* Botón Eliminar */
-a.btn:last-child {
-    background: #d32f2f;
+.btn-eliminar {
+    display: inline-flex;        
+    align-items: center;        
+    gap: 6px;                     
+    background-color: rgb(195, 11, 11);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
 }
-a.btn:last-child:hover {
-    background: #b71c1c;
+
+.btn-eliminar:hover{
+    background-color: rgb(129, 11, 11);
+    color: white;
+    text-decoration: none;
 }
 
 /* Botones DataTables */
