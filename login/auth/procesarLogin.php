@@ -3,9 +3,6 @@
 
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 session_start();
 
 $usuario = $_POST['usuario'] ?? '';
@@ -15,17 +12,21 @@ $clave   = $_POST['clave'] ?? '';
 $usuario_valido = "admin";
 $clave_valida   = "1234";
 
+$usuario_validoo = "jefe";
+$clave_validaa   = "5678";
+
 // Jefe de usuario
-if ($usuario === "jefe" && $clave === "5678") {
+if ($usuario === $usuario_validoo && $clave === $clave_validaa) {
     $_SESSION['usuario'] = $usuario;
-    header("Location: ../public/dashboard-jefe.php");
+    $_SESSION['rol'] = 'jefe';
+    header("Location: /SistemaDePa-ol/public/dashboard-jefe.php");
     exit();
 }
 
 // Admin
 if ($usuario === $usuario_valido && $clave === $clave_valida) {
     $_SESSION['usuario'] = $usuario;
-    header("Location: ../../public/dashboard.php");
+    header("Location: /SistemaDePa-ol/public/dashboard.php");
     exit();
 } else {
     echo "<div style='font-family:sans-serif; text-align:center; margin-top:2rem;'>
