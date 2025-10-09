@@ -19,11 +19,11 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'jefe') {
         <div class="logo">Sistema de Pañol</div>
         <nav class="menu">
             <a href="../public/dashboard-jefe.php">Inicio</a>
-            <a href="../jefeArea/inventario.php">Inventario</a>
+            <!-- Inventario removed for jefe de area -->
             <a href="../jefeArea/reportes.php">Reportes</a>
             <a href="../jefeArea/estadisticas.php">Estadísticas</a>
             <a href="../jefeArea/mantenimiento.php">Mantenimiento</a>
-            <a href="../jefeArea/personal.php">Personal</a>
+            <!-- Personal removed for jefe de area -->
             <a href="../login/logout.php" class="logout">Cerrar sesión</a>
             
         </nav>

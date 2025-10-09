@@ -43,12 +43,19 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Préstamos</span>
         </a>
-        <a href="../reportes/list.php" class="btn">
+    <a href="../jefeArea/reportes.php" class="btn">
             <span class="sidebar-icon">
                 <!-- Modern icon: bar_chart (Material Icons) -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2V19h2V9.2zm6 2.6V19h2v-7.2zm6-5.2V19h2V6.6z"/></svg>
             </span>
             <span class="sidebar-text">Reportes</span>
+        </a>
+        <!-- Botón rápido para generar/enviar reportes -->
+        <a href="../reportes/list.php" class="btn" style="background:#2d89ef;color:#fff;margin-top:8px;">
+            <span class="sidebar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h14v-2H5v2zm7-9L5 9h4v6h6V9h4L12 4z"/></svg>
+            </span>
+            <span class="sidebar-text">Enviar reporte</span>
         </a>
             <!-- Sección Inventario -->
 

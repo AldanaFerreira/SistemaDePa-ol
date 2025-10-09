@@ -55,8 +55,13 @@ require_once '../db/db.php';
                 <button type="button" class="btn" id="descargarReporteBtn">
                     <i class="fas fa-download"></i> Descargar
                 </button>
+                <button type="button" class="btn" id="enviarReporteBtn" style="display:none;">
+                    Enviar reporte
+                </button>
             </div>
         </form>
+
+        <!-- Usaremos el mismo formulario #formReporte para enviar al jefe (no crear otro) -->
 
         <br>
 
@@ -128,6 +133,34 @@ require_once '../db/db.php';
                 startY: 20
             });
             doc.save('reporte.pdf');
+        });
+    });
+    </script>
+
+    <script>
+    // Habilitar botón "Enviar reporte" cuando el reporte esté visible
+    // y reutilizar el mismo formulario (#formReporte) para enviar por POST al dashboard del jefe.
+    $(document).ready(function() {
+        // Asegurarnos que por defecto el formulario está en GET para "Ver reporte"
+        $('#formReporte').attr('method', 'GET').attr('action', '');
+
+        function toggleEnviar() {
+            if ($('#reporteDatosTable').length) {
+                $('#enviarReporteBtn').show();
+            } else {
+                $('#enviarReporteBtn').hide();
+            }
+        }
+        toggleEnviar();
+
+        $('#enviarReporteBtn').on('click', function() {
+            // Cambiar método y action del formulario existente y enviarlo
+            $('#formReporte').attr('method', 'POST').attr('action', '../public/dashboard-jefe.php');
+            // Añadimos un input oculto para marcar envío (opcional)
+            if (!$('#formReporte input[name="enviar_a_jefe"]').length) {
+                $('#formReporte').append('<input type="hidden" name="enviar_a_jefe" value="1">');
+            }
+            $('#formReporte').submit();
         });
     });
     </script>
