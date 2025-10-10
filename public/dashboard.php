@@ -43,7 +43,7 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Préstamos</span>
         </a>
-    <a href="../jefeArea/reportes.php" class="btn">
+    <a href="../reportes/list.php" class="btn">
             <span class="sidebar-icon">
                 <!-- Modern icon: bar_chart (Material Icons) -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2V19h2V9.2zm6 2.6V19h2v-7.2zm6-5.2V19h2V6.6z"/></svg>
@@ -79,24 +79,44 @@ $totalPrestamos = 2;
     <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h2>
 
     <div class="cards">
-        <div class="card">
-            <h3>Usuarios</h3>
-            <p class="number"><?= $totalUsuarios ?></p>
-            <a href="../usuarios/list.php" class="btn">Ver usuarios</a>
-        </div>
+        <?php
+        // Stock total disponible
+        $stockTotal = 0;
+        $bajoStock = 0;
+        $umbralBajoStock = 5; // Puedes cambiar este valor
+        $sqlStock = "SELECT cantidadDisponible FROM herramientas";
+        $resStock = $conn->query($sqlStock);
+        if ($resStock) {
+            while ($row = $resStock->fetch_assoc()) {
+                $stockTotal += (int)$row['cantidadDisponible'];
+                if ((int)$row['cantidadDisponible'] <= $umbralBajoStock) {
+                    $bajoStock++;
+                }
+            }
+        }
 
+        // Préstamos activos
+        $prestamosActivos = 0;
+        $sqlPrestamos = "SELECT COUNT(*) AS activos FROM prestamos WHERE fechaDevolucion IS NULL OR fechaDevolucion = ''";
+        $resPrestamos = $conn->query($sqlPrestamos);
+        if ($resPrestamos && $row = $resPrestamos->fetch_assoc()) {
+            $prestamosActivos = $row['activos'];
+        }
+        ?>
         <div class="card">
-            <h3>Ítems</h3>
-            <p class="number"><?= $totalItems ?></p>
-            <a href="../items/list.php" class="btn">Ver ítems</a>
+            <h3>Stock total disponible</h3>
+            <p class="number"><?php echo $stockTotal; ?></p>
         </div>
-
         <div class="card">
-            <h3>Préstamos</h3>
-            <p class="number"><?= $totalPrestamos ?></p>
+            <h3>Materiales con bajo stock</h3>
+            <p class="number"><?php echo $bajoStock; ?></p>
+        </div>
+        <div class="card">
+            <h3>Préstamos activos</h3>
+            <p class="number"><?php echo $prestamosActivos; ?></p>
             <a href="../prestamos/list.php" class="btn">Ver préstamos</a>
         </div>
-        </div>
+    </div>
 
         <!-- Inventario en el dashboard -->
         <?php

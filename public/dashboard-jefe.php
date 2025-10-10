@@ -45,7 +45,7 @@ if (file_exists($reportesFile)) {
     $reportesRecibidos = json_decode(file_get_contents($reportesFile), true) ?: [];
 }
 
-include '../includes/header.php';
+//include '../includes/header.php';
 
 ?>
 
@@ -129,4 +129,4 @@ include '../includes/header.php';
     </div>
 </div>
 
-<?php include '../includes/footer-jefe.php'; ?>
+<?php include '../includes/footer.php'; ?>
