@@ -9,14 +9,18 @@ class Herramienta {
     private string $nombre;
     private string $descripcion;
     private int $cantidadDisponible;
+    private int $stockMinimo;
+    private datetime $fechaActualizacion;
 
-    public function __construct(int $idHerramienta, int $idEstado, int $idCategoria, string $nombre, string $descripcion, int $cantidadDisponible) {
+    public function __construct(int $idHerramienta, int $idEstado, int $idCategoria, string $nombre, string $descripcion, int $cantidadDisponible, int $stockMinimo, datetime $fechaActualizacion) {
         $this->idHerramienta = $idHerramienta;
         $this->idEstado = $idEstado;
         $this->idCategoria = $idCategoria;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->cantidadDisponible = $cantidadDisponible;
+        $this->stockMinimo = $stockMinimo;
+        $this->fechaActualizacion = $fechaActualizacion;
     }
 
     //getters y setters
@@ -69,6 +73,22 @@ class Herramienta {
         $this->cantidadDisponible = $cantidadDisponible;
     }
 
+    public function getStockMinimo(): int {
+        return $this->stockMinimo;
+    }   
+
+    public function setStockMinimo(int $stockMinimo): void {
+        $this->stockMinimo = $stockMinimo;
+    }
+
+    public function getFechaActualizacion(): datetime {
+        return $this->fechaActualizacion;
+    }
+
+    public function setFechaActualizacion(datetime $fechaActualizacion): void {
+        $this->fechaActualizacion = $fechaActualizacion;
+    }
+
     public function registrarHerramienta(): bool {
         // logica para registrar la herramienta en la bad
         return true; // retorna true si el registro fue exitoso
@@ -88,6 +108,26 @@ class Herramienta {
         // logica para consultar la disponibilidad de la herramienta
         return true; // retorna la cantidad disponible
     }
+    public function listarHerramientas(): array {
+        // logica para listar todas las herramientas
+        return []; // retorna un array de herramientas
+    }
+
+    public function buscarHerramienta(string $criterio): ?Herramienta {
+        // logica para buscar una herramienta por un criterio
+        return null; // retorna la herramienta si se encuentra, sino null
+    }
+
+    public function asignarCategoria(Categoria $categoria): void {
+        $this->idCategoria = $categoria;
+    }
+
+    public function asignarEstado(Estado $estado): void {
+        $this->idEstado = $estado;
+    }
+}
+?>
+
 
 
 
