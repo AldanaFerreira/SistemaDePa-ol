@@ -1,5 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 session_start();
+
+require_once '../db/db.php';    
 
 // Verificación de acceso (solo jefes)
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 'jefe') {
@@ -20,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enviar_a_jefe']) && $
         'descripcion' => isset($_POST['descripcion']) ? trim($_POST['descripcion']) : ''
     ];
 
-    $dir = __DIR__ . '/../db';
+    $dir = __DIR__ . '/../db/db';
     if (!is_dir($dir)) {
         mkdir($dir, 0755, true);
     }
@@ -46,7 +50,12 @@ if (file_exists($reportesFile)) {
 }
 
 //include '../includes/header.php';
-
+// Contar herramientas en mantenimiento pendientes
+$result = $conn->query("SELECT COUNT(*) AS pendientes FROM mantenimiento WHERE estado='pendiente'");
+$pendientes = 0;
+if($row = $result->fetch_assoc()){
+    $pendientes = $row['pendientes'];
+}
 ?>
 
 <link rel="stylesheet" type="text/css" href="dashboard_menu.css">
@@ -69,7 +78,7 @@ if (file_exists($reportesFile)) {
             </span>
             <span class="sidebar-text">Estadísticas</span>
         </a>
-        <a href="../jefeArea/mantenimiento.php" class="btn">
+        <a href="../mantenimiento/list.php" class="btn">
             <span class="sidebar-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 00.12-.64l-1.92-3.32a.5.5 0 00-.61-.22l-2.39.96a7.007 7.007 0 00-1.62-.94l-.36-2.53A.5.5 0 0014 2h-4a.5.5 0 00-.5.42l-.36 2.53c-.59.22-1.14.52-1.62.94l-2.39-.96a.5.5 0 00-.61.22l-1.92 3.32a.5.5 0 00.12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.5.5 0 00-.12.64l1.92 3.32c.14.24.44.32.68.22l2.39-.96c.48.42 1.03.72 1.62.94l.36 2.53c.05.28.27.42.5.42h4c.23 0 .45-.14.5-.42l.36-2.53c.59-.22 1.14-.52 1.62-.94l2.39.96c.24.1.54.02.68-.22l1.92-3.32a.5.5 0 00-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/></svg>
             </span>
@@ -87,7 +96,14 @@ if (file_exists($reportesFile)) {
 <div class="content">
     <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👋</h2>
     <div class="cards">
+       <link rel="stylesheet" href="../public/estiloDashboardJefe.css">
         <!-- Inventario card removed for jefe de area -->
+         <div class="card">
+    <h3>Herramientas en Mantenimiento</h3>
+    <a href="../mantenimiento/list.php" class="btn">Ver detalle (<?= $pendientes ?> pendientes)
+    </a>
+</div>
+
         <div class="card">
             <h3>Reportes</h3>
             <a href="../jefeArea/reportes.php" class="btn">Ver reportes</a>
@@ -95,10 +111,6 @@ if (file_exists($reportesFile)) {
         <div class="card">
             <h3>Estadísticas</h3>
             <a href="../jefeArea/estadisticas.php" class="btn">Ver estadísticas</a>
-        </div>
-        <div class="card">
-            <h3>Mantenimiento</h3>
-            <a href="../jefeArea/mantenimiento.php" class="btn">Ver mantenimiento</a>
         </div>
         <!-- Personal card removed for jefe de area -->
     </div>
@@ -127,6 +139,7 @@ if (file_exists($reportesFile)) {
             <p>No hay reportes recibidos.</p>
         <?php endif; ?>
     </div>
+    
 </div>
 
 <?php include '../includes/footer.php'; ?>

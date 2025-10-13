@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #e6f0ff;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 30px;
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tarjeta {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+}
+
+.tarjeta h3 {
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.tarjeta p {
+    margin: 5px 0;
+    color: #0059b3;
+}
+
+.botones {
+    margin-top: 15px;
+}
+
+button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s;
+}
+
+.realizado {
+    background: #007bff;
+    color: white;
+}
+
+.realizado:hover {
+    background: #0056b3;
+}
+
+.borrar {
+    background: #ff4d4d;
+    color: white;
+}
+
+.borrar:hover {
+    background: #cc0000;
+}
+
+.volver-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.volver {
+    background: #1a237e;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.volver:hover {
+    background: #1a237e;
+}

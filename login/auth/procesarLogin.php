@@ -26,6 +26,7 @@ if ($usuario === $usuario_validoo && $clave === $clave_validaa) {
 // Admin
 if ($usuario === $usuario_valido && $clave === $clave_valida) {
     $_SESSION['usuario'] = $usuario;
+    $_SESSION['rol'] = 'admin';
     header("Location: /SistemaDePa-ol/public/dashboard.php");
     exit();
 } else {
