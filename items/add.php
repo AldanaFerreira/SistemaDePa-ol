@@ -14,19 +14,31 @@ $categorias = $conn->query("SELECT * FROM categorias");
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Validar que los campos existen
     if(isset($_POST['nombre'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['ubicacion'])) {
         $nombre = $_POST['nombre'];
         $cantidadDisponible = $_POST['cantidadDisponible'];
         $idcategoria = $_POST['idcategoria'];
         $ubicacion = $_POST['ubicacion'];
 
+        // Valores por defecto
+        $stockMinimo = 1; // Puedes cambiar este valor si lo necesitas
+        $fechaActualizacion = date('Y-m-d H:i:s');
+        $cantidadReservada = 0;
+        $estado = ''; // Si no usas este campo, puedes omitirlo
 
-        // Preparar la consulta para evitar problemas de tipo
-        $sql = "INSERT INTO herramientas (nombre, cantidadDisponible, idcategoria, ubicacion) 
-                VALUES ('$nombre', '$cantidadDisponible', '$idcategoria', '$ubicacion')";
+        // 1. Insertar en herramientas (sin ubicacion)
+        $sql = "INSERT INTO herramientas (nombre, cantidadDisponible, idcategoria, stockMinimo, fechaActualizacion) 
+                VALUES ('$nombre', '$cantidadDisponible', '$idcategoria', '$stockMinimo', '$fechaActualizacion')";
 
         if ($conn->query($sql) === TRUE) {
+            // 2. Obtener el idHerramienta recién creado
+            $idHerramienta = $conn->insert_id;
+
+            // 3. Insertar en stock la ubicación y cantidad
+            $sqlStock = "INSERT INTO stock (idHerramienta, cantidadDisponible, cantidadReservada, stockMinimo, ubicacion, fechaActualizacion) 
+                         VALUES ('$idHerramienta', '$cantidadDisponible', '$cantidadReservada', '$stockMinimo', '$ubicacion', '$fechaActualizacion')";
+            $conn->query($sqlStock);
+
             header("Location: ../inventario/list.php");
             exit;
         } else {

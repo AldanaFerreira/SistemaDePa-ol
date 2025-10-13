@@ -19,7 +19,7 @@ $clave_validaa   = "5678";
 if ($usuario === $usuario_validoo && $clave === $clave_validaa) {
     $_SESSION['usuario'] = $usuario;
     $_SESSION['rol'] = 'jefe';
-    header("Location: /SistemaDePa-ol/public/dashboard-jefe.php");
+    header("Location: /SistemaDePañol/public/dashboard-jefe.php");
     exit();
 }
 
@@ -27,7 +27,7 @@ if ($usuario === $usuario_validoo && $clave === $clave_validaa) {
 if ($usuario === $usuario_valido && $clave === $clave_valida) {
     $_SESSION['usuario'] = $usuario;
     $_SESSION['rol'] = 'admin';
-    header("Location: /SistemaDePa-ol/public/dashboard.php");
+    header("Location: /SistemaDePañol/public/dashboard.php");
     exit();
 } else {
     echo "<div style='font-family:sans-serif; text-align:center; margin-top:2rem;'>

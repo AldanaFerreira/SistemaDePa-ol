@@ -1,9 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once '../db/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminar"], $_POST["idHerramienta"])) {
     $id = intval($_POST["idHerramienta"]);
 
+    // 1. Eliminar primero en stock
+    $conn->query("DELETE FROM stock WHERE idHerramienta = $id");
+
+    // 2. Luego eliminar en herramientas
     $sqlDelete = "DELETE FROM herramientas WHERE idHerramienta = $id";
     if ($conn->query($sqlDelete) === TRUE) {
 

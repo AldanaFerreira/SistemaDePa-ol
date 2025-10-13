@@ -12,11 +12,19 @@ if (!isset($_SESSION['usuario'])) {
 require_once '../db/db.php';
 
 // Traer herramientas con categoría y estado
-$sql = "SELECT h.idherramientas, h.nombre, h.cantidadDisponible, 
-               c.nombre AS categoria, e.nombre AS estado
-        FROM herramientas h
-        JOIN categorias c ON h.idcategoria = c.idcategoria";
+// $sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible, 
+//                c.nombre AS categoria, h.ubicacion
+//         FROM herramientas h
+//         JOIN categorias c ON h.idcategoria = c.idcategoria";
 
+$sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible,
+       c.nombre AS categoria, e.nombre AS estado, s.ubicacion
+FROM herramientas h
+JOIN categorias c ON h.idcategoria = c.idcategoria
+LEFT JOIN estados e ON h.idEstado = e.idEstado
+LEFT JOIN stock s ON h.idHerramienta = s.idHerramienta";
+
+// Ejecutar la consulta y guardar el resultado
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -53,6 +61,7 @@ $result = $conn->query($sql);
                 <th>Cantidad</th>
                 <th>Categoría</th>
                 <th>Ubicación</th>
+                <th>Estados</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -60,23 +69,42 @@ $result = $conn->query($sql);
             <?php if ($result->num_rows > 0): ?>
                 <?php while($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?= $row['idherramientas'] ?></td>
+                        <td><?= $row['idHerramienta'] ?></td>
                         <td><?= $row['nombre'] ?></td>
                         <td><?= $row['cantidadDisponible'] ?></td>
                         <td><?= $row['categoria'] ?></td>
+                        <td><?= $row['ubicacion'] ?></td>
                         <td><?= $row['estado'] ?></td>
-                        <td>
-                            <a href="edit.php?id=<?= $row['idherramientas'] ?>" class="btn">
+                    <td>
+
+
+                       <form action="edit.php" method="post" style="display:inline;">
+                            <input type="hidden" name="idHerramienta" value="<?= $row['idHerramienta'] ?>">
+                            <button type="submit" class="btn-editar">
                                 <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="delete.php?id=<?= $row['idherramientas'] ?>" class="btn" onclick="return confirm('¿Seguro que deseas eliminar este ítem?');">
+                            </button>
+                        
+
+                        <form action="delete.php" method="post" style="display:inline;" onsubmit="return confirm('¿Seguro que deseas eliminar este ítem?');">
+                            <input type="hidden" name="idHerramienta" value="<?= $row['idHerramienta'] ?>">
+                            <button type="submit" name="eliminar" class="btn-eliminar">
                                 <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
+                            </button>
+                        </form>
+
+                        <!-- Botones adicionales -->
+                        <button class='btn btn-warning' onclick='enviarAMantenimiento(<?= $row['idHerramienta'] ?>)'>
+                            <i class='fa fa-wrench'></i>
+                        </button>
+                        <button class='btn btn-secondary' onclick='darDeBaja(<?= $row['idHerramienta'] ?>)'>
+                            <i class='fa fa-arrow-down'></i>
+                        </button>
+                    </td>
+
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
-                <tr><td colspan="6">No hay ítems registrados</td></tr>
+                <tr><td colspan="6">No hay herramientas registrados</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
