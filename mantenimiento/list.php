@@ -27,10 +27,10 @@ if(isset($_POST['borrar'])){
 
 // Obtener herramientas en mantenimiento
 $result = $conn->query("
-    SELECT m.idMantenimiento, s.idHerramienta, h.nombre AS nombreHerramienta, m.fechaEnvio, m.estado
+    SELECT m.idMantenimiento, s.idherramientas, h.nombre AS nombreherramienta, m.fechaEnvio, m.estado
     FROM mantenimiento m
-    JOIN stock s ON m.idHerramienta = s.idHerramienta
-    JOIN herramientas h ON s.idHerramienta = h.idHerramienta
+    JOIN stock s ON m.idherramientas = s.idherramientas
+    JOIN herramientas h ON s.idherramientas = h.idherramientas
     WHERE m.estado='pendiente'
     ORDER BY m.fechaEnvio ASC
 ");
