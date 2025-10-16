@@ -32,12 +32,6 @@ require_once '../db/db.php';
         </span>
         <span class="sidebar-text">Reportes</span>
     </a>
-    <a href="../reportes/list.php" class="btn" style="background:#2d89ef;color:#fff;margin-top:8px;">
-        <span class="sidebar-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h14v-2H5v2zm7-9L5 9h4v6h6V9h4L12 4z"/></svg>
-        </span>
-        <span class="sidebar-text">Enviar reporte</span>
-    </a>
     <a href="../inventario/list.php" class="btn">
         <span class="sidebar-icon">
             <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11zM2 20h20v-2H2zm2-4h16v-2H4z"/></svg>

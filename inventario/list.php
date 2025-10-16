@@ -140,11 +140,11 @@ $result = $conn->query($sql);
 //         ],
 //         language: {
 //             search: "Buscar:",
-//             lengthMenu: "Mostrar _MENU_ herramientas por página",
+//             lengthMenu: "Mostrar MENU herramientas por página",
 //             zeroRecords: "No se encontraron herramientas",
-//             info: "Mostrando página _PAGE_ de _PAGES_",
+//             info: "Mostrando página PAGE de PAGES",
 //             infoEmpty: "No hay herramientas disponibles",
-//             infoFiltered: "(filtrado de _MAX_ herramientas totales)",
+//             infoFiltered: "(filtrado de MAX herramientas totales)",
 //             paginate: {
 //                 first: "Primera",
 //                 last: "Última",
@@ -177,11 +177,11 @@ $(document).ready(function() {
         ],
         language: {
             search: "Buscar:",
-            lengthMenu: "Mostrar _MENU_ herramientas por página",
+            lengthMenu: "Mostrar MENU herramientas por página",
             zeroRecords: "No se encontraron herramientas",
-            info: "Mostrando página _PAGE_ de _PAGES_",
+            info: "Mostrando página PAGE de PAGES",
             infoEmpty: "No hay herramientas disponibles",
-            infoFiltered: "(filtrado de _MAX_ herramientas totales)",
+            infoFiltered: "(filtrado de MAX herramientas totales)",
             paginate: {
                 first: "Primera",
                 last: "Última",

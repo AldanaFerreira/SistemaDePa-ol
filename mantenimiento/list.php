@@ -58,6 +58,12 @@ if($herramientasPendientes >= 3){
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <div class="form-container">
+    <div class="menu-button">
+        <a href="../public/dashboard-jefe.php" class="menu-link">
+            <i class="fas fa-bars"></i> Menú
+        </a>
+    </div>
 <meta charset="UTF-8">
 <title>Mantenimiento de Herramientas</title>
 <link rel="stylesheet" href="estiloMantenimiento.css">

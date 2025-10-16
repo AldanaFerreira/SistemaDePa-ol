@@ -94,3 +94,27 @@ button {
 .volver:hover {
     background: #1a237e;
 }
+
+
+/* Menú */
+.menu-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.menu-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #1a237e;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.menu-link:hover {
+    background-color: #0b1155;
+    color: white;
+    text-decoration: none;
+}
