@@ -1,14 +1,19 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 session_start();
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../login/auth/login.html');
     exit();
-}
+}   
+
 // Datos simulados
 $totalUsuarios = 1;
 $totalItems = 5;
 $totalPrestamos = 2;
 // resto del dashboard...
+
+require_once '../db/db.php';
 ?>
 <link rel="stylesheet" type="text/css" href="dashboard_menu.css">
 <link rel="stylesheet" type="text/css" href="sidebar_modern.css">
@@ -16,7 +21,7 @@ $totalPrestamos = 2;
 <div class="sidebar">
     <h2 style="margin-bottom: 10px;">Sistema Pañol</h2>
     <h3 style="margin-bottom: 32px;">Menú</h3>
-        <a href="../items/list.php" class="btn">
+        <a href="../items/add.php" class="btn">
             <span class="sidebar-icon">
                 <!-- Modern icon: inventory_2 (Material Icons) -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6V4H4v2H2v2h20V6h-2zm0 2H4v12h16V8zm-2 10H6V10h12v8z"/></svg>
@@ -37,6 +42,12 @@ $totalPrestamos = 2;
             </span>
             <span class="sidebar-text">Inventario</span>
         </a>
+        <a href="../reportes/list.php" class="btn">
+            <span class="sidebar-icon">
+                <!-- Modern icon: build (Material Icons) -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="38" width="38" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19.3l-4-4c.5-1.2.3-2.6-.6-3.5l-1-1c-.9-.9-2.3-1.1-3.5-.6l-4-4c-.4-.4-1-.4-1.4 0L2.7 8.7c-.4.4-.4 1 0 1.4l4 4c-.5 1.2-.3 2.6.6 3.5l1 1c.9.9 2.3 1.1 3.5.6l4 4c.4.4 1 .4 1.4 0l3.6-3.6c.5-.4.5-1 .1-1.4zM7.2 12L5 9.8l2-2L9.2 10zm9.6 9l-2-2L16 16l2 2z"/></svg>
+            </span>
+            <span class="sidebar-text">Reportes</span>
         <!-- Sección Configuración -->
         <a href="../public/configuracion.php" class="btn">
             <span class="sidebar-icon">
@@ -96,7 +107,7 @@ $totalPrestamos = 2;
 
     <!-- Inventario en el dashboard -->
     <?php
-    $sql = "SELECT h.idherramientas, h.nombre, h.cantidadDisponible, c.nombre AS categoria, e.nombre AS estado
+    $sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible, c.nombre AS categoria, e.nombre AS estado
             FROM herramientas h
             JOIN categorias c ON h.idcategoria = c.idcategoria
             JOIN estados e ON h.idEstado = e.idEstado";

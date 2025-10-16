@@ -17,12 +17,12 @@ require_once '../db/db.php';
 //         FROM herramientas h
 //         JOIN categorias c ON h.idcategoria = c.idcategoria";
 
-$sql = "SELECT h.idherramientas, h.nombre, h.cantidadDisponible,
+$sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible,
        c.nombre AS categoria, e.nombre AS estado, s.ubicacion
 FROM herramientas h
 JOIN categorias c ON h.idcategoria = c.idcategoria
 LEFT JOIN estados e ON h.idEstado = e.idEstado
-LEFT JOIN stock s ON h.idherramientas = s.idherramientas";
+LEFT JOIN stock s ON h.idHerramienta = s.idHerramienta";
 
 // Ejecutar la consulta y guardar el resultado
 $result = $conn->query($sql);
@@ -70,7 +70,7 @@ $result = $conn->query($sql);
             <?php if ($result->num_rows > 0): ?>
                 <?php while($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?= $row['idherramientas'] ?></td>
+                        <td><?= $row['idHerramienta'] ?></td>
                         <td><?= $row['nombre'] ?></td>
                         <td><?= $row['cantidadDisponible'] ?></td>
                         <td><?= $row['categoria'] ?></td>
@@ -80,24 +80,24 @@ $result = $conn->query($sql);
 
 
                        <form action="edit.php" method="post" style="display:inline;">
-                            <input type="hidden" name="idHerramienta" value="<?= $row['idherramientas'] ?>">
+                            <input type="hidden" name="idHerramienta" value="<?= $row['idHerramienta'] ?>">
                             <button type="submit" class="btn-editar">
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
                         
 
                         <form action="delete.php" method="post" style="display:inline;" onsubmit="return confirm('¿Seguro que deseas eliminar este ítem?');">
-                            <input type="hidden" name="idherramientas" value="<?= $row['idherramientas'] ?>">
+                            <input type="hidden" name="idHerramienta" value="<?= $row['idHerramienta'] ?>">
                             <button type="submit" name="eliminar" class="btn-eliminar">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
 
                         <!-- Botones adicionales -->
-                        <button class='btn btn-warning' onclick='enviarAMantenimiento(<?= $row['idherramientas'] ?>)'>
+                        <button class='btn btn-warning' onclick='enviarAMantenimiento(<?= $row['idHerramienta'] ?>)'>
                             <i class='fa fa-wrench'></i>
                         </button>
-                        <button class='btn btn-secondary' onclick='darDeBaja(<?= $row['idherramientas'] ?>)'>
+                        <button class='btn btn-secondary' onclick='darDeBaja(<?= $row['idHerramienta'] ?>)'>
                             <i class='fa fa-arrow-down'></i>
                         </button>
                     </td>
