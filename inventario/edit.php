@@ -7,7 +7,7 @@ require_once '../db/db.php';
 $mensaje = "";
 // $mensaje = "";
 
-$id = $_GET['idHerramienta'];
+$id = $_GET['idherramientas'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($_POST['nombre'], $_POST['cantidadDisponible'], $_POST['idcategoria'], $_POST['ubicacion'])) {
@@ -17,13 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $ubicacion = $_POST['ubicacion'];
 
         // Actualizar herramienta
-        $sqlUpdate = "UPDATE herramientas SET nombre = ?, cantidadDisponible = ?, idcategoria = ? WHERE idHerramienta = ?";
+        $sqlUpdate = "UPDATE herramientas SET nombre = ?, cantidadDisponible = ?, idcategoria = ? WHERE idherramientas = ?";
         $stmt = $conn->prepare($sqlUpdate);
         $stmt->bind_param("sdsi", $nombre, $cantidadDisponible, $idcategoria, $id);
 
         if ($stmt->execute()) {
             // Actualizar stock
-            $sqlUpdateStock = "UPDATE stock SET cantidadDisponible = ?, ubicacion = ? WHERE idHerramienta = ?";
+            $sqlUpdateStock = "UPDATE stock SET cantidadDisponible = ?, ubicacion = ? WHERE idherramientas = ?";
             $stmtStock = $conn->prepare($sqlUpdateStock);
             $stmtStock->bind_param("dsi", $cantidadDisponible, $ubicacion, $id);
             $stmtStock->execute();

@@ -17,12 +17,12 @@ require_once '../db/db.php';
 //         FROM herramientas h
 //         JOIN categorias c ON h.idcategoria = c.idcategoria";
 
-$sql = "SELECT h.idHerramienta, h.nombre, h.cantidadDisponible,
+$sql = "SELECT h.idherramientas, h.nombre, h.cantidadDisponible,
        c.nombre AS categoria, e.nombre AS estado, s.ubicacion
 FROM herramientas h
 JOIN categorias c ON h.idcategoria = c.idcategoria
 LEFT JOIN estados e ON h.idEstado = e.idEstado
-LEFT JOIN stock s ON h.idHerramienta = s.idHerramienta";
+LEFT JOIN stock s ON h.idherramientas = s.idherramientas";
 
 // Ejecutar la consulta y guardar el resultado
 $result = $conn->query($sql);

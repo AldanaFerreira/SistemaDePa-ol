@@ -15,7 +15,7 @@ require_once '../db/db.php';
 $sqlStock = "
     SELECT c.nombre AS categoria, SUM(s.cantidadDisponible) AS total
     FROM stock s
-    INNER JOIN herramientas h ON s.idHerramienta = h.idHerramienta
+    INNER JOIN herramientas h ON s.idherramientas = h.idherramientas
     INNER JOIN categorias c ON h.idCategoria = c.idCategoria
     GROUP BY c.nombre
 ";
